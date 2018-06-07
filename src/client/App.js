@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import './app.css';
 
 export default class App extends Component {
@@ -8,9 +9,16 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+    Axios.get('/api',{
+      headers:{
+        'authorization':'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjE0ZGY1OWFiMGYwMTE4Njg2YTIyMzAiLCJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6IiQyYSQxMCRZdjdvNVVzQk9yTUpOZS4wbjAwS2FlYlRvNU1SbXhYRkx3RU1acFpKZVl3V3kxT0tKczJxVyIsIl9fdiI6MCwiaWF0IjoxNTI4MTc0ODg0fQ.z33YtGItvecAtCzD6mlZ89OS5OAmuk8BRN3lRvTCfWk'
+      }
+    })
+    .then(res => this.setState({
+        username:res.data
+      })
+    )
+    .catch(err => console.log(err))
   }
 
   render() {
