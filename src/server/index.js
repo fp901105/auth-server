@@ -1,6 +1,7 @@
 const express = require('express');
 const os = require('os');
 var favicon = require('serve-favicon');
+var cors = require('cors');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 const auth = require('./routes/auth');
@@ -15,6 +16,7 @@ mongoose.connect(mongo_url, { promiseLibrary: require('bluebird')} )
   .then(()=> console.log('connection successful'))
   .catch( err => console.log(err));
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));

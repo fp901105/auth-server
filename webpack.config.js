@@ -13,7 +13,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
@@ -26,7 +26,7 @@ module.exports = {
     ]
   },
   devServer: {
-    port: 3000,
+    port: 3001,
     open: true,
     proxy: {
       '/api': 'http://localhost:7000'

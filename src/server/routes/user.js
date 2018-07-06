@@ -8,6 +8,7 @@ router.get('/', passport.authenticate('jwt', {session:false}), function(req,res)
   var token = getToken(req.headers);
   if(token){
     res.json(req.user.username)
+		console.log(req.user)
   } else{
     return res.status(403).send({success: false, msg: 'Unauthorized.'});
   }
